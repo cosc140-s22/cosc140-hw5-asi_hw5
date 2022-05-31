@@ -29,7 +29,7 @@ DEBUG = True
 # repl.it happiness
 ALLOWED_HOSTS = ['*']
 X_FRAME_OPTIONS = '*'
-
+CSRF_TRUSTED_ORIGINS = ['https://cosc140-hw5-asihw5.asiannasample.repl.co']
 
 # Application definition
 

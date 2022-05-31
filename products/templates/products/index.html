@@ -11,18 +11,32 @@
 {% block content %}
 <table class="table">
     <thead>
-        <th>Name
-        <th>Description
-        <th>Ages
-        <th>Price
+        <th><a href="{% url 'index' %}?sort=name">Name</a></th>
+        <th>Image</th>
+        <th>Description</th>
+        <th><a href="{% url 'index' %}?sort=age">Ages</a></th>
+        <th><a href="{% url 'index' %}?sort=price">Price</a></th>
+
     </thead>
     <tbody>
 {% for p in products %}
+{% with img=p.random_image %}
     <tr>
-        <td><a href="{% url 'show' p.id %}">{{ p.name }}</a>
-        <td>{{ p.description|truncatewords:5 }}
-        <td class="right">{{ p.age_range }}
-        <td class="right">{{ p.price|floatformat:2 }}
+        <td><a href="{% url 'show' p.id %}">{{ p.name }}</a></td>
+        <td>
+          {% if img %}
+          {% if img.image.width > img.image.height %}
+            <img src="{{img.image.url}}" alt="{{img.caption}}" width="100"/>
+          {% else %}
+            <img src="{{img.image.url}}" alt="{{img.caption}}" height="100"/>
+          {% endif %}
+          {% endif %}
+          </td>
+        <td>{{ p.description|truncatewords:5 }}</td>
+        <td class="right">{{ p.age_range }}</td>
+        <td class="right">{{ p.price|floatformat:2 }}</td>
+  </tr>
+{% endwith %} 
 {% endfor %}
     </tbody>
 </table>

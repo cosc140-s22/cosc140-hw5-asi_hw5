@@ -7,6 +7,28 @@
     <dt>Ages</dt><dd>{{product.age_range}}</dd>
     <dt>Price</dt><dd>{{product.price}}</dd>
 </dl>
+{% if images %}
+<table class="table">
+  <thead>
+    <th>Image</th>
+    <th>Caption</th>
+  </thead>
+  <tbody>
+    {% for img in images %}
+    <tr>
+      <td>
+        <img width="300" src="{{img.image.url}}" alt="{{img.caption}}" />
+      </td>
+      <td>
+        {{img.caption}}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+  
+</table>
 {% endblock %}
 
 {% block footer %}
